@@ -20,7 +20,15 @@ const TodoApp = () => {
     // Or
 
     // setAddTask([...taskList, value])
+  };
 
+  const deleteTaskButtonClick = (index) => {
+    // Create a copy of task list
+    const tempTaskList = Array.from(taskList);
+    //Removes one element from the provided index
+    tempTaskList.splice(index, 1);
+    // Update the task list
+    setAddTask(tempTaskList);
   };
 
   return (
@@ -41,7 +49,12 @@ const TodoApp = () => {
       <ul style={{ listStyleType: "none" }}>
         {taskList.map((element, index) => (
           <li key={index}>
-            <span>{element}{" "}</span>
+            <span>
+              {element}{" "}
+              <button id={index} onClick={() => deleteTaskButtonClick(index)}>
+                Delete
+              </button>
+            </span>
           </li>
         ))}
       </ul>
